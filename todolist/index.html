@@ -3,96 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <title>project</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <style>
-        body {
-    background-color: rgb(4, 29, 29);
-    font-family: 'poppins', Sans-Serif;
+        .container{
+            background-color: #414141;
+            height: 100vh;
+            padding: 10px;
+            display:flex;
+            flex-direction: column;
+            align-items: center;
+           
 
-}
 
-.container {
-    text-align: center;
-    background-color: #ffffff;
-    margin-left: 33px;
-    margin-right: 33px;
-    margin-top: 5px;
-    padding: 33px;
-    width: 360px;
-}
+        }
+        .sub-container{
+            background-color: #ffffff;
+            height: 100vh;
+            text-align: center;
+            width: 400px;
+            padding: 15px;
+         
+        }
+        input{
+            width:  240px;
+            height: 30px;
+            border-color:  #414141;
 
-input {
-    width: 270px;
-    padding: 8px;
-    border: 2px solid aqua;
-    outline: none;
-}
+        }
+        button{
+            width:  50px;
+            height: 36px;
+            color: #ffffff;
+            background-color: #414141;
+            cursor: pointer;
+        }
+        li{
+            background-color: #414141;
+            color: #ffffff;
+            width: 270px;
+            position: relative;
+            text-align: left;
+            padding: 5px;
+            padding-left: 20px;
 
-button {
-    width: 60px;
-    height: 41px;
-    background-color: rgb(4, 29, 29);
-    color: white;
-    border-radius: 2px;
-    font-size: 19px;
-    border: none;
-    outline: none;
-}
-.text ul{
-    position: relative;
-    background-color: aqua;
-    color: #ffffff;
-    font-size: 19px;
-    text-align: center;
-    padding: 10px;
-   
+        }
+        i{
+           
+            cursor: pointer;
+            position: absolute;
+            right: 10px;
 
-}
-.button-i{
-    position: absolute;
-    right:10px;
-    cursor: pointer;
-    text-align: left;
-}
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>TodoList Application</h1>
+    <div class="sub-container">
+        <h1>Todolist Application</h1>
         <div>
-            <input type="text" placeholder="Enter your task" id='input' />
+            <input type="text" placeholder="Enter your tasks" id="input">
             <button type="submit" onclick="add()">Add</button>
         </div>
-        <div class="text">
+        <div id="tasks">
 
         </div>
+
     </div>
-    
+</div>
 </body>
 <script>
-    let inputs = document.getElementById('input');
-let text = document.querySelector('.text');
+    let inputs=document.getElementById('input')
+    let text= document.getElementById('tasks')
 
-function add() {
-    if (inputs.value === ' ') {
-        alert('Please Enter Task');
-
-    } else {
-        let newElement = document.createElement('ul');
-        let button=document.createElement('button')
-        button.textContent='delete'
-        button.className='button-i'
-        newElement.innerHTML = `${inputs.value} <i class="fa-solid fa-trasg"></i>`;
-        text.appendChild(newElement);
-        inputs.value = " ";
-        newElement.querySelector('i').addEventListener('click', remove);
-        function remove(){
-            newElement.remove()
+    function add(){
+        if (inputs.value === ''){
+            alert('please enter your task')
         }
+        else{
+            let listOfElements=document.createElement('ul')
+            let newElement= document.createElement('li')
+            listOfElements.appendChild(newElement)
+            newElement.innerHTML=`${inputs.value}   <i class="fa-solid fa-trash"></i>`
+            text.appendChild(listOfElements)
+            inputs.value=''
+            newElement.querySelector('i').addEventListener('click',remove)
+            function remove(){
+                newElement.remove()
+            }
 
+
+        }
     }
-
-}
 </script>
 </html>
